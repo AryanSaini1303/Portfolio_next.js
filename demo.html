@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Home Automation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: white;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+      }
+      .container {
+        height: 94vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .devices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+      .device {
+        background-color: #333;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        flex: 1 1 200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .device-name {
+        margin-right: 10px;
+      }
+      .device header svg {
+        height: 2rem;
+        width: 2rem;
+        filter: contrast(200%);
+        filter: drop-shadow(black 8px 5px 6px);
+      }
+      .toggle:active {
+        opacity: 0.5;
+        transform: scale(0.98);
+      }
+      .toggle {
+        transition: 0.2s all ease-in-out;
+      }
+      .device header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .device {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: start;
+      }
+      .device h5 {
+        margin: 0;
+        font-weight: lighter;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        width: 100%;
+        position: relative;
+      }
+      .myDevices {
+        font-weight: 600;
+        margin: 0 1rem;
+        width: 94%;
+      }
+      .rooms .add svg {
+        height: 2rem;
+        width: 2rem;
+        filter: invert(25%);
+      }
+      .rooms {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin: 0.5rem 0.8rem;
+        width: 94%;
+      }
+      .room {
+        background-color: #333333;
+        padding: 0.5rem 0.7rem;
+        border-radius: 10rem;
+      }
+      .rooms h5 {
+        margin: 0;
+        font-size: 0.7rem;
+      }
+      .livingRoom {
+        background-color: rgb(15, 45, 177);
+      }
+      .container > .header {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .container > .header svg {
+        height: 2.6rem;
+        width: 2.6rem;
+        filter: invert(100%);
+        margin: 0 0.3rem;
+      }
+      .navs svg {
+        height: 2rem;
+        width: 2rem;
+        filter: invert(100%);
+      }
+      .navs {
+        display: flex;
+        justify-content: space-between;
+        background-color: #333333;
+        padding: 0.7rem 1rem;
+        border-radius: 5rem;
+        position: absolute;
+        width: 82%;
+        bottom: 2rem;
+      }
+      .header .heading * {
+        margin: 0;
+        color: rgb(33, 177, 224);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+          sans-serif;
+      }
+      .header {
+        margin: 1rem 0;
+      }
+      .header .heading h5 {
+        font-weight: 300;
+      }
+      .EnergyUsage {
+        margin: 1rem;
+        background-color: #333333;
+        padding: 0.7rem;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 89%;
+      }
+      .EnergyUsage * {
+        margin: 0;
+      }
+      .EnergyUsage h6 {
+        color: rgb(151, 151, 151);
+      }
+      .EnergyUsage .bar {
+        background-color: #6e6e6e;
+        height: 0.3rem;
+        width: 100%;
+        border-radius: 10px;
+        position: relative;
+        margin: 0.5rem 0;
+      }
+      .EnergyUsage .bar::before {
+        content: '';
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: blue;
+        height: 0.3rem;
+        width: 40%;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='container'>
+      <div class='header'>
+        <svg
+          data-name='Layer 3'
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 128 128'
+        >
+          <path
+            d='M28.781 104.122h70.438a2.111 2.111 0 0 0 2.111-2.111V52.188a2.11 2.11 0 0 0-.851-1.694L65.26 24.3a2.109 2.109 0 0 0-2.519 0L27.522 50.5a2.11 2.11 0 0 0-.851 1.694v49.822a2.111 2.111 0 0 0 2.11 2.106zM72.195 99.9H55.8V75.344h16.395zm-41.3-46.651L64 28.62l33.108 24.629V99.9H76.417V73.233a2.111 2.111 0 0 0-2.111-2.111H53.69a2.111 2.111 0 0 0-2.111 2.111V99.9H30.892z'
+          />
+        </svg>
+        <div class='heading'>
+          <h2>RYM Grenergy</h2>
+        </div>
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+          <path
+            d='M10,20h4a2,2,0,0,1-4,0Zm8-4V10a6,6,0,0,0-5-5.91V3a1,1,0,0,0-2,0V4.09A6,6,0,0,0,6,10v6L4,18H20Z'
+          />
+        </svg>
+      </div>
+      <div class='EnergyUsage'>
+        <h5>Daily Energy Usage</h5>
+        <h6>2.4kWh</h6>
+        <div class='bar'></div>
+      </div>
+      <h4 class='myDevices'>My Devices</h4>
+      <section class='rooms'>
+        <div class='livingRoom room'><h5>Living Room</h5></div>
+        <div class='Bedroom1 room'><h5>Bedroom 1</h5></div>
+        <div class='add'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+            <path
+              d='M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm4,11H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3a1,1,0,0,1,0,2Z'
+            />
+          </svg>
+        </div>
+      </section>
+      <div class='devices'>
+        <section class='device toggle' id='Display'>
+          <header>
+            <svg
+              viewBox='0 0 24 24'
+              fill='currentColor'
+              height='1em'
+              width='1em'
+            >
+              <path
+                d='M21 17H3V5h18m0-2H3a2 2 0 00-2 2v12a2 2 0 002 2h5v2h8v-2h5a2 2 0 002-2V5a2 2 0 00-2-2z'
+              />
+            </svg>
+            <div class='toggle' id='Display'></div>
+          </header>
+          <h5 class='device-name'>Display</h5>
+        </section>
+        <section class='device toggle' id='Discharge'>
+          <header>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 512 512'
+              width='1em'
+              height='1em'
+            >
+              <path
+                fill='white'
+                fillRule='evenodd'
+                d='M128.001 85.333h74.666V42.667h106.667v42.666h74.667v384h-256zM170.667 128v298.667h170.667V128zm21.334 245.333h128v32h-128z'
+                clipRule='evenodd'
+              ></path>
+            </svg>
+            <div class='toggle' id='Discharge'></div>
+          </header>
+          <h5 class='device-name'>Discharge</h5>
+        </section>
+        <section class='device toggle' id='Charging'>
+          <header>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 24 24'
+              width='1em'
+              height='1em'
+            >
+              <path
+                fill='white'
+                d='M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4M11 20v-5.5H9L13 7v5.5h2z'
+              ></path>
+            </svg>
+            <div class='toggle' id='Charging'></div>
+          </header>
+          <h5 class='device-name'>Charging</h5>
+        </section>
+        <section class='device toggle' id='Supply'>
+          <header>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 48 48'
+              width='1em'
+              height='1em'
+            >
+              <defs>
+                <mask id='ipSPowerSupplyOne0'>
+                  <g
+                    fill='none'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='4'
+                  >
+                    <path
+                      fill='#fff'
+                      stroke='#fff'
+                      d='M33 34H15L8 17.75L10 9h28l2 8.75z'
+                    ></path>
+                    <path
+                      stroke='#fff'
+                      d='M18 4v5m12-5v5m-6 25v10h16v-7.368'
+                    ></path>
+                    <path stroke='#000' d='M18 21h12'></path>
+                  </g>
+                </mask>
+              </defs>
+              <path
+                fill='currentColor'
+                d='M0 0h48v48H0z'
+                mask='url(#ipSPowerSupplyOne0)'
+              ></path>
+            </svg>
+            <div class='toggle' id='Supply'></div>
+          </header>
+          <h5 class='device-name'>Supply</h5>
+        </section>
+      </div>
+      <section class='navs'>
+        <svg
+          data-name='Layer 1'
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 48 48'
+        >
+          <path
+            d='m46.62 22.86-21.23-.29.29-21.2 1.08.11a21.89 21.89 0 0 1 19.78 20.29zm-19.2-2.26 17 .23A19.9 19.9 0 0 0 27.65 3.6z'
+          />
+          <path
+            d='M23.44 46.53h-.29A22 22 0 0 1 1.46 24.24 22.1 22.1 0 0 1 21.89 2.6L23 2.52l-.3 22.73 22.77.31-.1 1.08a22.13 22.13 0 0 1-21.93 19.89zM20.94 4.7A20.1 20.1 0 0 0 3.46 24.27a20 20 0 0 0 19.71 20.25h.27a20.1 20.1 0 0 0 19.77-17l-22.57-.3z'
+          />
+        </svg>
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+          <path
+            d='M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm4,11H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3a1,1,0,0,1,0,2Z'
+          />
+        </svg>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 32 32'
+          style='enable-background: new 0 0 32 32'
+          xml:space='preserve'
+        >
+          <path
+            d='M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM27 32a1 1 0 0 1-1-1v-6.115a6.95 6.95 0 0 0-6.942-6.943h-6.116A6.95 6.95 0 0 0 6 24.885V31a1 1 0 1 1-2 0v-6.115c0-4.93 4.012-8.943 8.942-8.943h6.116c4.93 0 8.942 4.012 8.942 8.943V31a1 1 0 0 1-1 1z'
+          />
+        </svg>
+      </section>
+    </div>
+    <script>
+      document.querySelectorAll('.toggle').forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+          let deviceId = toggle.id;
+          fetch(`/relay?${deviceId}=true`)
+            .then((response) => response.text())
+            .then((data) => console.log('ok'));
+        });
+      });
+    </script>
+  </body>
+</html>
