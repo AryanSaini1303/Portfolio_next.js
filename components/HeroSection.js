@@ -106,25 +106,68 @@ export default function HeroSection() {
           className="-rotate-12"
         />
         <div className="absolute flex-col top-12 left-2">
-          <h4 className="text-white font-playwrite">Stared journey as a web developer</h4>
+          <h4 className="text-white font-playwrite">
+            Stared journey as a web developer
+          </h4>
           <div className="relative left-[50%]">
             <div className="h-16 w-[0.1rem] bg-[#808080] before:content-[''] before:absolute before:h-2 before:w-2 before:rounded-full before:bg-[#808080] before:bottom-0 before:left-[-0.18rem]"></div>
           </div>
         </div>
         <div className="absolute flex-col justify-center -bottom-8">
-          <h4 className="text-white font-playwrite">Worked on freelance projects</h4>
+          <h4 className="text-white font-playwrite">
+            Worked on freelance projects
+          </h4>
           <div className="relative left-[50%] top-[-5rem]">
             <div className="h-14 w-[0.1rem] bg-[#808080] before:content-[''] before:absolute before:h-2 before:w-2 before:rounded-full before:bg-[#808080] before:top-0 before:left-[-0.18rem]"></div>
           </div>
         </div>
         <div className="absolute flex-col justify-center right-6 top-4">
-          <h4 className="text-white font-playwrite">Became CTO at RYM Grenergy</h4>
+          <h4 className="text-white font-playwrite">
+            Became CTO at RYM Grenergy
+          </h4>
           <div className="relative left-[50%]">
             <div className="h-16 w-[0.1rem] bg-[#808080] before:content-[''] before:absolute before:h-2 before:w-2 before:rounded-full before:bg-[#808080] before:bottom-0 before:left-[-0.18rem]"></div>
           </div>
         </div>
       </div>
-      <div className="bg-[#1a1a1a] rounded-2xl shadow-md shadow-black grid4"></div>
+      <div className="bg-[#1a1a1a] rounded-2xl shadow-md shadow-black grid4 flex px-5 items-center justify-center">
+        <div>
+          <Image
+            src={"/sticker1.png"}
+            alt="sticker1"
+            height={300}
+            width={300}
+          />
+          <Image
+            src={"/sticker2.png"}
+            alt="sticker1"
+            height={130}
+            width={130}
+            className="mx-16 my-5"
+          />
+        </div>
+        <Image
+          src={"/sticker3.png"}
+          alt="sticker1"
+          height={180}
+          width={250}
+          className="m-4 mx-0"
+        />
+        <Image
+          src={"/sticker4.png"}
+          alt="sticker1"
+          height={100}
+          width={100}
+          className="h-32 w-32 translate-y-9"
+        />
+        <Image
+          src={"/sticker5.png"}
+          alt="sticker1"
+          height={100}
+          width={100}
+          className="h-32 w-32 -translate-y-14"
+        />{" "}
+      </div>
     </section>
   );
 }
